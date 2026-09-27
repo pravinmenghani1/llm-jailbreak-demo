@@ -142,6 +142,17 @@ If the judge call fails (e.g. Ollama is unreachable), the UI falls back to a
 simple keyword heuristic (`is_jailbroken_heuristic()` in `app.py`) and labels
 the reason accordingly.
 
+**Note on judge reliability:** local models occasionally misjudge — testing
+found cases where a small/mid-size judge model contradicted the actual
+response text (e.g. flagging a plain "I don't know." as a leak). The judge
+prompt was hardened to explicitly quote and reason over the literal response
+text rather than assuming it complied with the user's request, and a bare
+refusal (e.g. "I don't know") is now short-circuited to SAFE without even
+calling the judge, since a refusal can never be a violation. If you see the
+judge disagree with what's visibly on screen, it's worth reporting — it means
+either the prompt needs further hardening or a stronger `JUDGE_MODEL_PREFERENCE`
+entry is needed for your local model set.
+
 ---
 
 ## 🛠️ CLI testing (no UI needed)
