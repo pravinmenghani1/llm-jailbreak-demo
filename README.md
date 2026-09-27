@@ -44,8 +44,8 @@ jailbreaking/
 ### 1. Clone the repo
 
 ```bash
-git clone <this-repo-url>
-cd jailbreaking
+git clone https://github.com/pravinmenghani1/llm-jailbreak-demo.git
+cd llm-jailbreak-demo
 ```
 
 ### 2. Create a virtual environment and install dependencies
